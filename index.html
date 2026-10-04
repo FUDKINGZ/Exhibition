@@ -269,7 +269,7 @@ input[type=file].hidden-file{display:none}
 .coin-slot{position:relative;width:92px;height:132px;border-radius:12px;background:linear-gradient(90deg,#0a0c10,#1a1f2a 40%,#0a0c10);border:2px solid #334;box-shadow:inset 0 0 12px #000}
 .coin-slot::before{content:"";position:absolute;left:50%;top:16px;transform:translateX(-50%);width:16px;height:92px;border-radius:6px;background:#050608;box-shadow:inset 0 0 6px #000,0 0 0 1px #222}
 .token{width:88px;height:88px;border-radius:50%;display:flex;align-items:center;justify-content:center;text-align:center;font-size:11px;font-weight:900;letter-spacing:.4px;line-height:1.05;color:#5a3200;background:radial-gradient(circle at 30% 28%,#fff3bf,#ffd54f 42%,#ffb300 68%,#c68400);border:2px solid #8a5a00;box-shadow:0 0 14px rgba(255,179,0,.55),inset 0 0 0 3px rgba(139,90,0,.35);text-transform:uppercase;cursor:pointer;padding:8px}
-.coin-slot.fed::after{content:"FUD KINGZ";position:absolute;left:50%;top:18px;transform:translateX(-50%);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;letter-spacing:.3px;color:#5a3200;background:radial-gradient(circle at 30% 30%,#ffe082,#ffb300 55%,#c68400);box-shadow:0 0 10px rgba(255,179,0,.55);animation:coinDrop .55s ease-in forwards}
+.coin-slot.fed::after{content:"WFUD STUDIOS";position:absolute;left:50%;top:18px;transform:translateX(-50%);width:64px;height:64px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:7px;font-weight:900;letter-spacing:.3px;color:#5a3200;background:radial-gradient(circle at 30% 30%,#ffe082,#ffb300 55%,#c68400);box-shadow:0 0 10px rgba(255,179,0,.55);animation:coinDrop .55s ease-in forwards}
 @keyframes coinDrop{0%{opacity:0;transform:translateX(-50%) translateY(-18px) scale(.7)}40%{opacity:1;transform:translateX(-50%) translateY(0) scale(1)}100%{opacity:0;transform:translateX(-50%) translateY(28px) scale(.85)}}
 .coin-hint{font-family:"Courier New",Courier,monospace;font-size:10px;letter-spacing:2px;color:#39ff14;text-shadow:0 0 6px #39ff14;animation:coinBlink 1.2s step-end infinite}
 @keyframes coinBlink{50%{opacity:.35}}
@@ -292,7 +292,7 @@ input[type=file].hidden-file{display:none}
 <audio id="sfxKick" src="./audio/sound fx/sfx-kick.wav" preload="none" playsinline></audio>
 <audio id="sfxThrow" src="./audio/sound fx/sfx-throw.wav" preload="none" playsinline></audio>
 <input type="file" id="rosterFile" accept="application/json,.json" class="hidden-file"/>
-<section id="intro" class="screen active"><div class="crt" id="introCrt"><div class="coin-panel" id="coinPanel"><h2>FUD KINGZ OF FINTWITS</h2><div class="coin-slot-wrap"><div class="token" id="enterArenaBtn">FUD KINGZ</div><div class="coin-slot" id="coinSlot"></div><div class="coin-hint">INSERT TOKEN</div></div></div><pre id="introText"></pre><div class="intro-skip">PRESS ANY KEY / TAP TO SKIP</div></div></section>
+<section id="intro" class="screen active"><div class="crt" id="introCrt"><div class="coin-panel" id="coinPanel"><h2>FUD KINGZ OF FINTWITS</h2><div class="coin-slot-wrap"><div class="token" id="enterArenaBtn">WFUD STUDIOS</div><div class="coin-slot" id="coinSlot"></div><div class="coin-hint">INSERT TOKEN</div></div></div><pre id="introText"></pre><div class="intro-skip">PRESS ANY KEY / TAP TO SKIP</div></div></section>
 <section id="title" class="screen menu">
   <div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"></div>
   <div class="menu-art"><img class="roster" id="rosterArt" alt="Title"></div>
@@ -301,7 +301,7 @@ input[type=file].hidden-file{display:none}
     <button class="btn btn-dark" onclick="show('soundtrack')">SOUNDTRACK</button>
     <button class="btn btn-dark" onclick="openStockCred()">STOCK CRED</button>
     <button class="btn btn-dark" onclick="openPopularityBoard()">SCOREBOARD</button>
-    <button class="btn btn-dark span2" onclick="show('guide')">GUIDE</button>
+    <button class="btn btn-dark" onclick="show('guide')">GUIDE</button>
   </div>
 </section>
 <section id="roster" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>PLAYER ROSTER</p></div><div class="roster-body"><div class="form-card"><div class="form-label">NEW / UPDATE PROFILE</div><div class="form-row" style="margin-top:8px"><input id="rosterName" placeholder="Player name"/><input id="rosterHandle" placeholder="@handle"/></div><div class="form-row"><button type="button" onclick="saveRosterProfile()">SAVE PROFILE</button><button type="button" onclick="exportRosterFile()">SAVE FILE</button><button type="button" onclick="document.getElementById('rosterFile').click()">LOAD FILE</button></div><div class="sent-note" id="rosterNote"></div></div><div class="member-list" id="rosterList"></div></div><div class="menu-btns"><button class="btn btn-gold" onclick="show('title')">BACK</button></div></section>
@@ -520,11 +520,11 @@ if(mode==="arcade"){
   if(matchSkill)matchSkill.style.display="none";
 }else{
   if(matchSkill)matchSkill.style.display="";
-  const showCpu=mode==="pvc";
+  const showCpu=mode==="pvc"&&!readyToFight;
   if(skillRow)skillRow.style.display=showCpu?"":"none";
   if(skillLabel)skillLabel.style.display=showCpu?"":"none";
   if(roundBox)roundBox.style.display="";
-}if(mode==="arcade"||readyToFight){arenaLine.textContent=arena.name;nextBtn.textContent="ENTER ARENA";paintMatchupBg(arena);preloadMatchPair();}else{arenaLine.textContent="";nextBtn.textContent="NEXT: CHOOSE ARENA";paintMatchupBg(null);}renderSkillRow();}
+}if(mode==="arcade"||readyToFight){arenaLine.textContent=arena.name;nextBtn.textContent="ENTER ARENA";paintMatchupBg(arena);preloadMatchPair();}else{arenaLine.textContent="";nextBtn.textContent="CHOOSE ARENA";paintMatchupBg(null);}renderSkillRow();}
 function goMatchup(){if(mode!=="arcade"&&fighterLocked(selectedOpponent))return;if(mode==="pvc"||mode==="arcade")cpuFighter=selectedOpponent;if(mode==="arcade"){selectedArena=arcadeArenaIndex();readyToFight=true;}else readyToFight=false;renderMatchup();show("matchup");}
 function fromMatchupNext(){if(mode==="arcade"||readyToFight){startFight(true);return;}goArenas();}
 function backFromMatchup(){if(mode==="arcade"){readyToFight=false;show("fighters");}else if(readyToFight){readyToFight=false;renderArenaCarousel();show("arenas");}else if(mode==="pvc"){renderOpponentScreen();show("opponents");}else show("fighters");}
