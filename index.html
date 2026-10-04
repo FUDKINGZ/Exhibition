@@ -79,7 +79,7 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 #stockcred .mint,#guide .mint,#stockcred .grok-credit,#guide .grok-credit{text-align:center}
 #matchup{background-size:contain;background-repeat:no-repeat;background-position:center center;background-color:#071018}
 #matchup::before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(5,8,14,.78),rgba(5,8,14,.55) 40%,rgba(5,8,14,.72));pointer-events:none}
-#matchup>*{position:relative;z-index:1}
+#matchup>*{position:relative;z-index:1}#matchup.arena-on .matchup-body{position:absolute;inset:0;z-index:2;justify-content:center;align-items:center}#matchup.arena-on .brand,#matchup.arena-on .menu-btns{position:relative;z-index:3}
 .vs-row{width:100%;display:grid;grid-template-columns:1fr auto 1fr;grid-template-rows:auto auto;gap:6px 8px;align-items:center}
 .vs-name{grid-row:1;font-family:Impact,"Arial Black",system-ui,sans-serif;font-size:clamp(13px,3.6vw,20px);font-weight:900;letter-spacing:1.6px;text-transform:uppercase;color:#ffd54f;text-shadow:0 0 12px #ffb300,0 2px 0 #000;text-align:center}
 .vs-name.p1{grid-column:1}.vs-name.p2{grid-column:3}
@@ -229,9 +229,9 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 .move-btn:active,.move-btn.held{filter:brightness(1.15)}
 #moveL{background-image:url(./buttons/left.png);background-position:center center;background-size:contain}
 #moveR{background-image:url(./buttons/right.png);background-position:center center;background-size:contain}
-.util-row{display:grid;grid-template-columns:56px 56px 56px 1fr 56px 56px 56px;flex:0 0 26px;width:100%;height:26px;min-height:26px;max-height:26px;justify-items:center;align-items:center;gap:0;padding:0 calc(14px + env(safe-area-inset-right)) 0 calc(14px + env(safe-area-inset-left));margin:0;border:0;border-top:1px solid #334;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);line-height:1;box-sizing:border-box;position:relative;z-index:2}
+.util-row{display:grid;grid-template-columns:56px 1fr 56px;flex:0 0 26px;width:100%;height:26px;min-height:26px;max-height:26px;justify-items:center;align-items:center;gap:0;padding:0 calc(14px + env(safe-area-inset-right)) 0 calc(14px + env(safe-area-inset-left));margin:0;border:0;border-top:1px solid #334;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);line-height:1;box-sizing:border-box;position:relative;z-index:2}
 .util-row .tiny-mute,.util-row #pauseBtn{flex:none;margin:0;padding:4px 10px;border-radius:8px;height:24px;box-sizing:border-box}
-#muteMusic,#pauseBtn,#muteFx{position:relative;grid-column:auto;grid-row:auto;margin:0}
+#muteMusic,#pauseBtn,#muteFx{position:relative;grid-row:1;margin:0;justify-self:center}#muteMusic{grid-column:1}#pauseBtn{grid-column:2}#muteFx{grid-column:3}
 .overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:0 16px;z-index:20;background:transparent;pointer-events:none;text-align:center}
 .overlay.show{display:flex}.overlay .btn{pointer-events:auto;width:min(100%,200px);padding:8px 10px;font-size:12px;margin:4px 0}
 .overlay h2{color:#ffd54f;font-size:20px;margin:0 0 6px}.ko{font-size:clamp(16px,4.5vw,24px);color:#ff1744;text-shadow:0 0 20px #f00;margin:0}
@@ -531,7 +531,7 @@ if(mode==="arcade"){
   if(skillRow)skillRow.style.display=showCpu?"":"none";
   if(skillLabel)skillLabel.style.display=showCpu?"":"none";
   if(roundBox)roundBox.style.display=readyToFight?"none":"";
-}const matchVs=document.getElementById("matchVs"),matchHint=document.getElementById("matchHint");if(mode==="arcade"||readyToFight){if(matchVs)matchVs.style.display="";if(matchHint)matchHint.textContent="MATCH UP";arenaLine.textContent=arena.name;nextBtn.textContent="ENTER ARENA";paintMatchupBg(arena);preloadMatchPair();}else{if(matchVs)matchVs.style.display="none";if(matchHint)matchHint.textContent="CHOOSE CPU LEVEL";arenaLine.textContent="";nextBtn.textContent="CHOOSE ARENA";paintMatchupBg(null);}renderSkillRow();}
+}const matchVs=document.getElementById("matchVs"),matchHint=document.getElementById("matchHint");const matchEl=document.getElementById("matchup");if(mode==="arcade"||readyToFight){if(matchEl)matchEl.classList.add("arena-on");if(matchVs)matchVs.style.display="";if(matchHint)matchHint.textContent="MATCH UP";arenaLine.textContent=arena.name;nextBtn.textContent="ENTER ARENA";paintMatchupBg(arena);preloadMatchPair();}else{if(matchEl)matchEl.classList.remove("arena-on");if(matchVs)matchVs.style.display="none";if(matchHint)matchHint.textContent="CHOOSE CPU LEVEL";arenaLine.textContent="";nextBtn.textContent="CHOOSE ARENA";paintMatchupBg(null);}renderSkillRow();}
 function goMatchup(){if(mode!=="arcade"&&fighterLocked(selectedOpponent))return;if(mode==="pvc"||mode==="arcade")cpuFighter=selectedOpponent;if(mode==="arcade"){selectedArena=arcadeArenaIndex();readyToFight=true;}else readyToFight=false;renderMatchup();show("matchup");}
 function fromMatchupNext(){if(mode==="arcade"||readyToFight){startFight(true);return;}goArenas();}
 function backFromMatchup(){if(mode==="arcade"){readyToFight=false;show("fighters");}else if(readyToFight){readyToFight=false;renderArenaCarousel();show("arenas");}else if(mode==="pvc"){renderOpponentScreen();show("opponents");}else show("fighters");}
