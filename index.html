@@ -151,7 +151,7 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 #titlebar .brand-logo{display:block;width:min(92vw,420px);max-width:100%;height:auto;max-height:72px;margin:0 auto;object-fit:contain;object-position:center}
 #pauseBtn,.tiny-mute{position:relative;background:#222c40;color:#fff;border:1px solid #445;border-radius:8px;padding:4px 8px;font-size:9px;font-weight:800;margin:0;line-height:1.1}
 .tiny-mute.off{background:#3a2030;color:#ff8a80}
-.hud{display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:end;padding:6px 10px 4px;background:#070b14}
+.hud{position:absolute;top:0;left:0;right:0;z-index:8;display:grid;grid-template-columns:1fr auto 1fr;gap:6px;align-items:end;padding:6px 10px 14px;background:linear-gradient(180deg,rgba(7,11,20,.78),rgba(7,11,20,.28) 68%,transparent);pointer-events:none}
 .meter{min-width:0}
 .meter label{font-size:11px;display:block;font-weight:700;min-width:0;height:14px}
 .meter label .char-name{display:block;color:#e8f0ff;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
@@ -198,7 +198,7 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 .power-wrap.ready .power-bar{border-color:#ffe082}
 #winFlashName{font-family:Impact,"Arial Black",system-ui,sans-serif;font-size:clamp(26px,8vw,46px);font-weight:900;color:#ffd54f;text-shadow:0 0 24px #ffb300;letter-spacing:3px;text-transform:uppercase}
 #controls{position:relative;width:100%;height:auto;flex:0 0 auto;flex-shrink:0;min-height:0;padding:0 0 env(safe-area-inset-bottom);margin:0;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);z-index:6;display:flex;flex-direction:column;align-items:stretch;justify-content:flex-end;gap:0;box-sizing:border-box;overflow:visible}
-.pad-wrap{position:relative;width:100%;flex:0 0 auto;height:auto;min-height:200px;max-height:none;margin:0;padding:10px 0 14px;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e),linear-gradient(180deg,#2a3142,#12161e);border:2px solid #334;border-radius:12px;box-shadow:inset 0 0 18px rgba(0,0,0,.55);display:grid;grid-template-columns:12% auto auto 1fr auto auto 12%;grid-template-rows:auto auto auto;align-items:center;justify-items:center;column-gap:2px;row-gap:6px;box-sizing:border-box;overflow:visible}
+.pad-wrap{position:relative;width:100%;flex:0 0 auto;height:auto;min-height:0;max-height:none;margin:0;padding:4px 0 4px;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e),linear-gradient(180deg,#2a3142,#12161e);border:0;border-top:2px solid #334;border-radius:0;box-shadow:inset 0 0 18px rgba(0,0,0,.55);display:grid;grid-template-columns:12% auto auto 1fr auto auto 12%;grid-template-rows:auto auto auto;align-items:center;justify-items:center;column-gap:2px;row-gap:2px;box-sizing:border-box;overflow:visible}
 #moveL{grid-column:1;grid-row:1/4;justify-self:stretch;align-self:stretch}
 #moveR{grid-column:7;grid-row:1/4;justify-self:stretch;align-self:stretch}
 #lp{grid-column:2;grid-row:1;justify-self:start;align-self:end;margin-left:3px;margin-bottom:0}
@@ -211,25 +211,25 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 #controls{-ms-touch-action:none;overscroll-behavior:none;-webkit-user-select:none!important;user-select:none!important}
 .pad-wrap,.pad-wrap *{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-drag:none!important;touch-action:none!important;-ms-touch-action:none;-webkit-tap-highlight-color:transparent}
 .util-row,.util-row *{touch-action:manipulation;pointer-events:auto;-webkit-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important}
-.atk{position:relative;width:56px;height:57px;border:0;border-radius:0;padding:0;background-color:transparent;background-size:56px 57px;background-repeat:no-repeat;background-position:center;cursor:pointer;transition:transform .1s ease,filter .1s ease;touch-action:none!important;-ms-touch-action:none;outline:none;-webkit-user-select:none!important;user-select:none!important}
-#lp,#lk,#rp,#rk{width:56px;height:57px;background-size:56px 57px}
+.atk{position:relative;width:46px;height:46px;border:0;border-radius:0;padding:0;background-color:transparent;background-size:46px 46px;background-repeat:no-repeat;background-position:center;cursor:pointer;transition:transform .1s ease,filter .1s ease;touch-action:none!important;-ms-touch-action:none;outline:none;-webkit-user-select:none!important;user-select:none!important}
+#lp,#lk,#rp,#rk{width:46px;height:46px;background-size:46px 46px}
 .atk,.move-btn{-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-moz-user-select:none;-webkit-user-drag:none!important;user-drag:none!important;-webkit-tap-highlight-color:transparent;touch-action:none!important;-ms-touch-action:none;outline:none}
 .atk::selection,.move-btn::selection,.tiny-mute::selection,#pauseBtn::selection,#controls::selection,#controls *::selection{background:transparent!important;color:inherit!important}
 .atk:active,.move-btn:active{transform:scale(.92);filter:brightness(.85)}
 #lp{background-image:url(./buttons/lp.png)}
 #rp{background-image:url(./buttons/rp.png)}
-#bk{width:56px;height:57px;background-image:url(./buttons/bk.png);-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none}
-#th{width:56px;height:57px;background-image:url(./buttons/th.png);opacity:.55}
+#bk{width:46px;height:46px;background-image:url(./buttons/bk.png);background-size:46px 46px;-webkit-user-select:none;user-select:none;-webkit-touch-callout:none;touch-action:none}
+#th{width:46px;height:46px;background-image:url(./buttons/th.png);background-size:46px 46px;opacity:.55}
 #th.armed{opacity:1;filter:drop-shadow(0 0 10px #9c27b0)}
 #lk{background-image:url(./buttons/lk.png)}
 #rk{background-image:url(./buttons/rk.png)}
 #bk.held{filter:brightness(1.3) drop-shadow(0 0 8px #0277bd)}
 #bk:active,#th:active{transform:scale(.92)}
-.move-btn{position:relative;top:auto;bottom:auto;left:auto;right:auto;width:100%;height:100%;border:0;border-radius:0;padding:0;background-color:transparent;background-repeat:no-repeat;background-position:center;background-size:56px 57px;cursor:pointer;touch-action:none!important;-ms-touch-action:none;-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-drag:none!important;-webkit-tap-highlight-color:transparent;outline:none}
+.move-btn{position:relative;top:auto;bottom:auto;left:auto;right:auto;width:100%;height:100%;border:0;border-radius:0;padding:0;background-color:transparent;background-repeat:no-repeat;background-position:center;background-size:46px 46px;cursor:pointer;touch-action:none!important;-ms-touch-action:none;-webkit-user-select:none!important;-moz-user-select:none!important;-ms-user-select:none!important;user-select:none!important;-webkit-touch-callout:none!important;-webkit-user-drag:none!important;user-drag:none!important;-webkit-tap-highlight-color:transparent;outline:none}
 .move-btn:active,.move-btn.held{filter:brightness(1.15)}
-#moveL{background-image:url(./buttons/left.png);background-position:center center;background-size:56px 57px}
-#moveR{background-image:url(./buttons/right.png);background-position:center center;background-size:56px 57px}
-.util-row{display:flex;flex:0 0 36px;width:100%;height:36px;min-height:36px;max-height:36px;justify-content:center;align-items:center;gap:8px;padding:0;margin:0;border:0;border-top:1px solid #334;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);line-height:1;box-sizing:border-box;position:relative;z-index:2}
+#moveL{background-image:url(./buttons/left.png);background-position:center center;background-size:46px 46px}
+#moveR{background-image:url(./buttons/right.png);background-position:center center;background-size:46px 46px}
+.util-row{display:flex;flex:0 0 26px;width:100%;height:26px;min-height:26px;max-height:26px;justify-content:center;align-items:center;gap:8px;padding:0;margin:0;border:0;border-top:1px solid #334;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);line-height:1;box-sizing:border-box;position:relative;z-index:2}
 .util-row .tiny-mute,.util-row #pauseBtn{flex:none;margin:0;padding:4px 10px;border-radius:8px;height:24px;box-sizing:border-box}
 #muteMusic,#pauseBtn,#muteFx{position:relative;grid-column:auto;grid-row:auto;margin:0}
 .overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;padding:10px 16px 0;z-index:20;background:linear-gradient(180deg,rgba(0,0,0,.72),rgba(0,0,0,.22) 36%,transparent 66%);pointer-events:none;text-align:center}
@@ -337,8 +337,8 @@ input[type=file].hidden-file{display:none}
 <section id="soundtrack" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>PIT DECK</p></div><div class="pit"><div class="pit-lcd"><b id="pitNow">PIT DECK</b><span id="pitSub">SELECT A TRACK</span></div><div class="pit-list" id="pitList"></div><div class="pit-controls"><button type="button" onclick="pitStep(-1)">PREV</button><button type="button" id="pitPlay" onclick="pitToggle()">PLAY</button><button type="button" onclick="pitStep(1)">NEXT</button></div></div><div class="menu-btns"><button class="btn btn-gold" onclick="show('title')">BACK</button></div></section>
 <section id="fight" class="screen">
   <div id="titlebar"><img class="brand-logo" src="./fight header.png" alt="FINTWITS FUD KINGZ"></div>
-  <div class="hud"><div class="meter p1"><label><span class="char-name" id="p1Name">YOU</span></label><div class="bar"><span id="p1Bar"></span><em class="bar-cash" id="p1Dollar">$100</em></div><div class="pip-row"><div class="round-pips" id="p1Pips"></div><span class="char-handle" id="p1Profile"></span></div></div><div class="clock-wrap"><span id="roundClock">2:00</span></div><div class="meter p2"><label><span class="char-name" id="p2Name">CPU</span></label><div class="bar"><span id="p2Bar"></span><em class="bar-cash" id="p2Dollar">$100</em></div><div class="pip-row"><span class="char-handle" id="p2Profile"></span><div class="round-pips" id="p2Pips"></div></div></div></div>
   <div id="stage">
+    <div class="hud"><div class="meter p1"><label><span class="char-name" id="p1Name">YOU</span></label><div class="bar"><span id="p1Bar"></span><em class="bar-cash" id="p1Dollar">$100</em></div><div class="pip-row"><div class="round-pips" id="p1Pips"></div><span class="char-handle" id="p1Profile"></span></div></div><div class="clock-wrap"><span id="roundClock">2:00</span></div><div class="meter p2"><label><span class="char-name" id="p2Name">CPU</span></label><div class="bar"><span id="p2Bar"></span><em class="bar-cash" id="p2Dollar">$100</em></div><div class="pip-row"><span class="char-handle" id="p2Profile"></span><div class="round-pips" id="p2Pips"></div></div></div></div>
     <div class="fighter" id="you"><img class="fighter-img" id="youFile" alt=""></div>
     <div class="fighter" id="cpu"><img class="fighter-img" id="cpuFile" alt=""></div>
     <div class="power-wrap p1" id="p1PowerWrap"><label>POWER <span id="p1PowerTxt">0%</span></label><div class="power-bar"><span id="p1Power"></span></div></div>
