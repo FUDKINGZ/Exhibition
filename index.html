@@ -883,7 +883,7 @@ document.getElementById("winFlash").classList.add("show");
 if(winFlashTimer)clearTimeout(winFlashTimer);
 winFlashTimer=setTimeout(function(){showFinalStats(win,record,false);},WIN_FLASH_MS);
 }
-function goTitle(){clearTimeout(aiTimer);clearReadyTimer();clearRoundTimer();stopWalkLoop();if(winFlashTimer){clearTimeout(winFlashTimer);winFlashTimer=null;}paused=over=announcing=false;readyToFight=false;setBlock("you",false);show("title");}
+function goTitle(){clearTimeout(aiTimer);clearReadyTimer();clearRoundTimer();stopWalkLoop();if(winFlashTimer){clearTimeout(winFlashTimer);winFlashTimer=null;}paused=over=announcing=false;readyToFight=false;setBlock("you",false);musicStage=0;mutedMusic=false;try{bgm.pause();}catch(e){}if(audioCtx&&audioCtx.state==="running")audioCtx.suspend().catch(function(){});refreshMuteButtons();show("title");}
 function clearSel(){try{const s=window.getSelection&&window.getSelection();if(s&&s.removeAllRanges)s.removeAllRanges();}catch(e){}}
 function antiSelect(el){
   if(!el||el.dataset.selLock)return;
