@@ -331,7 +331,7 @@ input[type=file].hidden-file{display:none}
 <section id="fighters" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p id="fighterHint">CHOOSE FIGHTER</p></div><div class="carousel-wrap"><div class="carousel" id="fighterCarousel"></div><div class="nav-row"><button type="button" onclick="shiftFighter(-1)">◀</button><button type="button" onclick="shiftFighter(1)">▶</button></div><div class="dots" id="fighterDots"></div></div><div class="menu-btns"><button class="btn btn-dark" onclick="backFromFighters()">BACK</button><button class="btn btn-gold" onclick="afterYourFighter()">NEXT</button></div></section>
 <section id="opponents" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>CHOOSE NEXT OPPONENT</p></div><div class="opp-wrap"><div class="opp-grid" id="opponentGrid"></div><div class="hidden-box"><label>HIDDEN CHARACTERS</label><div class="hidden-row" id="hiddenRow"></div></div></div><div class="menu-btns"><button class="btn btn-dark" onclick="show('fighters')">BACK</button><button class="btn btn-gold" onclick="goMatchup()">NEXT</button></div></section>
 <section id="matchup" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>MATCH UP</p></div><div class="matchup-body"><div class="match-arena-name" id="matchArenaName"></div><div class="vs-row"><b class="vs-name p1" id="matchP1Name">P1</b><b class="vs-name p2" id="matchP2Name">P2</b><div class="vs-card p1"><img id="matchP1" alt=""></div><div class="vs-mark">VS</div><div class="vs-card p2"><img id="matchP2" alt=""></div></div><div class="skill-box" id="matchSkillBox"><label>CPU LEVEL</label><div class="skill-row" id="skillRow"></div><div class="round-box" id="matchRoundBox"><label>ROUNDS</label><div class="round-pick" id="roundPick"></div></div></div></div><div class="menu-btns"><button class="btn btn-dark" onclick="backFromMatchup()">BACK</button><button class="btn btn-gold" id="matchNext" onclick="fromMatchupNext()">NEXT</button></div></section>
-<section id="postfight" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p id="postHint">CHALLENGER DOWN</p></div><div class="post-body"><div class="vs-row"><b class="vs-name p1" id="postP1Name">YOU</b><b class="vs-name p2" id="postP2Name">CPU</b><div class="vs-card p1"><img id="postP1" alt=""></div><div class="vs-mark" id="postMark">WIN</div><div class="vs-card p2"><img id="postP2" alt=""></div></div><p class="post-sub" id="postSub"></p></div><div class="menu-btns" id="postBtns" style="justify-content:center;gap:8px"><button class="btn btn-gold" id="postContinue" onclick="afterPostFight()">CONTINUE</button><button class="btn btn-gold" id="postPlayAgain" onclick="playAgainExhibition()" style="display:none">REMATCH</button><button class="btn btn-dark" id="postExitTitle" onclick="goTitle()" style="display:none">EXIT TO TITLE</button></div></section>
+<section id="postfight" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p id="postHint">CHALLENGER DOWN</p></div><div class="post-body"><div class="vs-row"><b class="vs-name p1" id="postP1Name">YOU</b><b class="vs-name p2" id="postP2Name">CPU</b><div class="vs-card p1"><img id="postP1" alt=""></div><div class="vs-mark" id="postMark">WIN</div><div class="vs-card p2"><img id="postP2" alt=""></div></div><p class="post-sub" id="postSub"></p></div><div class="menu-btns" id="postBtns" style="justify-content:center;gap:8px"><button class="btn btn-gold" id="postContinue" onclick="afterPostFight()">CONTINUE</button><button class="btn btn-gold" id="postPlayAgain" onclick="playAgainExhibition()" style="display:none">REMATCH</button><button class="btn btn-gold" id="postPickFighter" onclick="backToExhibitionFighters()" style="display:none">CHOOSE FIGHTER</button><button class="btn btn-dark" id="postExitTitle" onclick="goTitle()" style="display:none">EXIT TO MAIN</button></div></section>
 <section id="liquid" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p id="liquidHint">LIQUIDATION BOARD</p></div><div class="liquid-wrap"><div class="liquid-stage"><div class="liquid-hero" id="liquidHero"></div><div class="liquid-grid" id="liquidGrid"></div></div></div><div class="menu-btns" style="justify-content:center"><button class="btn btn-gold" id="liquidNext" onclick="afterLiquidation()">NEXT CHALLENGER</button></div></section>
 <section id="arenas" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>CHOOSE ARENA</p></div><div class="carousel-wrap"><div class="carousel" id="arenaCarousel"></div><div class="nav-row"><button type="button" onclick="shiftArena(-1)">◀</button><button type="button" onclick="shiftArena(1)">▶</button></div><div class="dots" id="arenaDots"></div></div><div class="menu-btns"><button class="btn btn-dark" onclick="backFromArenas()">BACK</button><button class="btn btn-gold" id="arenaNext" onclick="afterArena()">NEXT</button></div></section>
 <section id="crown" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>CROWNING THE KING</p></div><div class="post-body"><div class="match-arena-name">CROWNING THE KING</div><div class="vs-card p1" style="width:min(70vw,280px)"><img id="crownHero" alt=""></div><p class="post-sub" id="crownSub"></p></div><div class="menu-btns"><button class="btn btn-gold" onclick="afterCrown()">CONTINUE</button></div></section>
@@ -557,6 +557,8 @@ function showPostFight(beatenName,record,youWon){
     document.getElementById("postSub").textContent="";
     if(btnContinue)btnContinue.style.display="";
     if(btnAgain)btnAgain.style.display="none";
+    const btnPick=document.getElementById("postPickFighter");
+    if(btnPick)btnPick.style.display="none";
     if(btnExit)btnExit.style.display="none";
     preloadLiquidation();
   }else{
@@ -565,6 +567,8 @@ function showPostFight(beatenName,record,youWon){
     document.getElementById("postSub").textContent=(record||"");
     if(btnContinue)btnContinue.style.display="none";
     if(btnAgain)btnAgain.style.display="";
+    const btnPick=document.getElementById("postPickFighter");
+    if(btnPick)btnPick.style.display="";
     if(btnExit)btnExit.style.display="";
   }
   show("postfight");
@@ -744,7 +748,7 @@ function spendThrow(who){throwAmmo[who]=Math.max(0,(throwAmmo[who]||0)-1);if(thr
 function bindSrcList(img,list){const urls=unique(list);if(img.dataset.list===urls[0]&&img.src)return;img.dataset.list=urls[0]||"";let i=0;img.onerror=function(){i+=1;if(i<urls.length){this.src=urls[i];return;}this.onerror=null;};img.src=urls[0]||"";}
 function playPose(who,pose){const fighter=FIGHTERS[who==="you"?selectedFighter:cpuFighter];const img=document.getElementById(who==="you"?"youFile":"cpuFile");const list=(fighter[pose]&&fighter[pose].length)?fighter[pose]:fighter.select;const hold=pose==="idle"||pose==="block"||pose==="victory"||pose==="loser";clearTimeout(poseTimer[who]);if(img.dataset.pose===pose&&img.src){if(!hold)poseTimer[who]=setTimeout(function(){playPose(who,"idle");},POSE_MS);return;}img.dataset.pose=pose;bindSrcList(img,hold?list:list.concat(fighter.idle||[]));img.style.display="block";if(!hold)poseTimer[who]=setTimeout(function(){playPose(who,"idle");},POSE_MS);}
 function stopTitleMusic(){currentTrack="";bgm.pause();try{bgm.currentTime=0;}catch(e){}}
-function setTrack(src,playNow,restart){if(!src){stopTitleMusic();return;}const same=currentTrack===src;currentTrack=src;bgm.loop=true;const safe=encodeURI(src);if(!same)bgm.src=safe;else if(restart){try{bgm.currentTime=0;}catch(e){}}if(!playNow)return;if(same&&!restart&&!bgm.paused){playBgm();return;}const kick=function(){playBgm();};if(bgm.readyState>=2)kick();else bgm.addEventListener("canplay",kick,{once:true});}
+function setTrack(src,playNow,restart){if(!src){stopTitleMusic();return;}const same=currentTrack===src;currentTrack=src;bgm.loop=true;const safe=encodeURI(src);if(!same){bgm.src=safe;try{bgm.load();}catch(e){}}else if(restart){try{bgm.currentTime=0;}catch(e){}}if(!playNow)return;if(same&&!restart&&!bgm.paused){playBgm();return;}playBgm();if(bgm.readyState<2)bgm.addEventListener("canplay",function(){playBgm();},{once:true});}
 let musicGain=null,musicSource=null;
 function bgmVolume(){return musicStage===1?0.25:1;}
 function musicBus(){const ctx=ensureAudio();if(!ctx)return null;if(!musicGain){try{musicGain=ctx.createGain();if(!musicSource)musicSource=ctx.createMediaElementSource(bgm);musicSource.connect(musicGain);musicGain.connect(ctx.destination);}catch(e){musicGain=null;return null;}}return musicGain;}
@@ -947,16 +951,14 @@ bindMoveBtn("moveR","right");
 function bindUtil(id,fn){
   const el=document.getElementById(id);
   if(!el)return;
-  el.addEventListener("pointerdown",function(e){e.preventDefault();e.stopPropagation();fn();});
-  el.addEventListener("click",function(e){e.preventDefault();e.stopPropagation();});
+  el.style.touchAction="manipulation";
+  el.addEventListener("click",function(e){e.stopPropagation();fn();});
 }
 bindUtil("muteMusic",toggleMuteMusic);
 bindUtil("muteFx",toggleMuteFx);
 bindUtil("pauseBtn",togglePause);
 antiSelect(document.getElementById("controls"));
 antiSelect(document.querySelector("#controls .pad-wrap"));
-antiSelect(document.querySelector("#controls .util-row"));
-["muteMusic","muteFx","pauseBtn"].forEach(function(id){antiSelect(document.getElementById(id));});
 document.addEventListener("selectstart",function(e){
   if(lastScreen==="fight"){e.preventDefault();clearSel();return false;}
   const t=e.target;if(t&&t.closest&&t.closest("#controls")){e.preventDefault();clearSel();return false;}
