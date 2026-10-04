@@ -33,7 +33,7 @@ html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;font-fam
 .menu-btns .btn{width:auto;flex:0 1 auto;margin:0;padding:8px 12px;font-size:12px;border-radius:10px}
 .menu-btns.tight{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .menu-btns.tight .btn{margin:0;padding:8px 6px;font-size:12px;border-radius:10px;line-height:1.15}
-.menu-btns.tight .span2{grid-column:1/3}.mode-split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}.mode-split .btn{margin:0}.mode-split .btn:disabled{opacity:.4;cursor:not-allowed}
+.menu-btns.tight .span2{grid-column:1/3}.mode-split{display:grid;grid-template-columns:1fr 1fr 1fr;gap:6px}.mode-split .btn{margin:0}.mode-split .btn:disabled{opacity:.4;filter:grayscale(.35);cursor:not-allowed}
 .pit{width:min(92vw,420px);margin:8px auto;background:#07140c;border:1px solid #1f6b38;border-radius:14px;padding:10px;box-shadow:inset 0 0 0 1px #0c2416}
 .pit-lcd{background:#04160b;border:1px solid #39ff14;border-radius:8px;padding:8px;color:#39ff14;font-family:"Courier New",Courier,monospace;text-shadow:0 0 6px #39ff14}
 .pit-lcd b{display:block;font-size:13px;letter-spacing:1px}
@@ -94,9 +94,9 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 .slot-wrap.side{width:28%;height:68%;pointer-events:auto}.slot-wrap.left{left:18%}.slot-wrap.right{left:82%}
 .slot-wrap.center{width:46%;height:96%;left:50%;z-index:3}
 .slot-name{width:100%;font-size:10px;color:#ffe082;font-weight:900;text-transform:uppercase;white-space:normal;overflow:hidden;text-align:center;line-height:1.15;-webkit-text-stroke:1px #000;paint-order:stroke fill;text-shadow:2px 2px 0 #000,-2px 2px 0 #000,2px -2px 0 #000,-2px -2px 0 #000,0 0 8px #ffb300}
-.slot-wrap.center .slot-name{font-size:12px;color:#ffd54f}
+.slot-wrap.center .slot-name{font-size:12px;color:#ffd54f}.slot-wrap.side .slot-name{display:none}
 .slot{position:relative;width:100%;flex:1;min-height:0;border:2px solid #2a3344;border-radius:14px;background:#121826;overflow:hidden;display:flex;flex-direction:column}
-.slot-wrap.side .slot{opacity:.88;filter:none}
+.slot-wrap.side .slot{opacity:.9;filter:none;background:transparent;border-color:transparent;box-shadow:none}
 .slot-wrap.center .slot{border-color:#ffd54f;box-shadow:0 0 22px rgba(255,213,79,.45)}
 .slot img,.slot .arena-art{width:100%;flex:1;min-height:0;object-fit:contain;object-position:center bottom;display:block;background:transparent}
 .slot .arena-art{object-fit:cover}.slot.locked img,.slot.locked .arena-art{filter:grayscale(1) brightness(.38)}
@@ -304,7 +304,7 @@ input[type=file].hidden-file{display:none}
   <div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"></div>
   <div class="menu-art"><img class="roster" id="rosterArt" alt="Title"></div>
    <div class="menu-btns tight">
-    <div class="mode-split span2"><button class="btn btn-dark" type="button" onclick="openModeGate('arcade')">ARCADE</button><button class="btn btn-gold" type="button" onclick="startFreeDemo()">EXHIBITION</button><button class="btn btn-dark" type="button" onclick="openModeGate('one')">1 ON 1</button></div>
+    <div class="mode-split span2"><button class="btn btn-gold" type="button" onclick="openModeGate('arcade')">ARCADE</button><button class="btn btn-gold" type="button" onclick="startFreeDemo()">EXHIBITION</button><button class="btn btn-gold" type="button" onclick="openModeGate('one')">1 ON 1</button></div>
     <button class="btn btn-dark" onclick="show('soundtrack')">SOUNDTRACK</button>
     <button class="btn btn-dark" onclick="openGallery()">GALLERY</button>
     <button class="btn btn-dark" onclick="openStockCred()">STOCK CRED</button>
@@ -402,7 +402,7 @@ input[type=file].hidden-file{display:none}
 const ROOT="./",ARENA_DIR=ROOT+"arenas/",FIGHTER_DIR=ROOT+"fighters/",TITLECARD_DIR=ROOT+"titlecards/",OBJECT_DIR=ROOT+"objects/",AUDIO=ROOT+"audio/";
 const TITLE_TRACK=AUDIO+"title/maintitle.mp3",INTRO_BED=AUDIO+"intro/intro-boot.wav";
 const ROSTER=ROOT+"title screen.png",ROSTER_FILE=ROOT+"roster.json";
-const MAX=100,PUNCH_DMG=1,KICK_DMG=2,THROW_DMG=6,BLOCK_HEAL=1,HIT_GAP=86;
+const MAX=100,PUNCH_DMG=0.5,KICK_DMG=1,THROW_DMG=2.5,BLOCK_HEAL=0.5,HIT_GAP=86;
 const HS_STORE="ft_gains",SKILL_STORE="ft_skill",ARCADE_SKILL_STORE="ft_arcade_skill",ROSTER_STORE="ft_roster",ROUNDS_STORE="ft_rounds";
 const POSE_MS=420,HS_LIMIT=10,ANNOUNCE_MS=800,WIN_FLASH_MS=4200,ROUND_WIN_HOLD_MS=4000,FINAL_KO_HOLD_MS=4000;
 const THROW_MS=640,POWER_MAX=100,POWER_PUNCH=22,POWER_KICK=28,COMBO_WINDOW=900,COMBO_BONUS=12,THROWS_PER_POWER=3;
@@ -863,7 +863,7 @@ function startNextRound(){currentRound=Math.min(maxRounds(),currentRound+1);rese
 function startKoQuake(){const fight=document.getElementById("fight");const stage=document.getElementById("stage");fight.classList.remove("quake");void fight.offsetWidth;stage.style.willChange="transform";fight.classList.add("quake");if(quakeTimer)clearTimeout(quakeTimer);quakeTimer=setTimeout(function(){fight.classList.remove("quake");stage.style.willChange="";},2200);}
 function holdFinalKo(done,winnerName){announcing=true;startKoQuake();document.getElementById("winFlashKo").textContent="K.O.";document.getElementById("winFlashName").textContent=winnerName||playerLabel();document.getElementById("winFlash").classList.add("show","top");if(winFlashTimer)clearTimeout(winFlashTimer);winFlashTimer=setTimeout(function(){winFlashTimer=null;document.getElementById("winFlash").classList.remove("show");if(done)done();},FINAL_KO_HOLD_MS);}
 function holdRoundWinner(youWonRound){playBgm();clearRoundTimer();document.getElementById("winFlashKo").textContent="ROUND "+currentRound+" WINNER";document.getElementById("winFlashName").textContent=youWonRound?playerLabel():opponentLabel();document.getElementById("winFlash").classList.add("show","top");if(winFlashTimer)clearTimeout(winFlashTimer);winFlashTimer=setTimeout(function(){winFlashTimer=null;startNextRound();},ROUND_WIN_HOLD_MS);}
-function updateMeters(){const pct=function(v){return Math.max(0,(v/MAX)*100)+"%";};const p1=document.getElementById("p1Bar"),p2=document.getElementById("p2Bar");document.getElementById("p1Dollar").textContent="$"+hp.you;document.getElementById("p2Dollar").textContent="$"+hp.cpu;p1.style.width=pct(hp.you);p2.style.width=pct(hp.cpu);p1.style.background=healthColor(hp.you/MAX);p2.style.background=healthColor(hp.cpu/MAX);}
+function updateMeters(){const pct=function(v){return Math.max(0,(v/MAX)*100)+"%";};const p1=document.getElementById("p1Bar"),p2=document.getElementById("p2Bar");document.getElementById("p1Dollar").textContent="$"+Math.round(hp.you);document.getElementById("p2Dollar").textContent="$"+Math.round(hp.cpu);p1.style.width=pct(hp.you);p2.style.width=pct(hp.cpu);p1.style.background=healthColor(hp.you/MAX);p2.style.background=healthColor(hp.cpu/MAX);}
 let boxCache=null,boxAt=0;
 function measureBox(id){const r=document.getElementById(id).getBoundingClientRect();const insetX=r.width*0.28,insetY=r.height*0.18;return{left:r.left+insetX,right:r.right-insetX,top:r.top+insetY,bottom:r.bottom-insetY*0.2,mid:r.left+r.width/2};}
 function bodyBox(who){const now=Date.now();if(!boxCache||now-boxAt>40){boxCache={you:measureBox("you"),cpu:measureBox("cpu")};boxAt=now;}return boxCache[who];}
