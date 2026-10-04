@@ -229,7 +229,7 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 .move-btn:active,.move-btn.held{filter:brightness(1.15)}
 #moveL{background-image:url(./buttons/left.png);background-position:center center;background-size:contain}
 #moveR{background-image:url(./buttons/right.png);background-position:center center;background-size:contain}
-.util-row{display:flex;flex:0 0 26px;width:100%;height:26px;min-height:26px;max-height:26px;justify-content:center;align-items:center;gap:8px;padding:0;margin:0;border:0;border-top:1px solid #334;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);line-height:1;box-sizing:border-box;position:relative;z-index:2}
+.util-row{display:grid;grid-template-columns:56px 56px 56px 1fr 56px 56px 56px;flex:0 0 26px;width:100%;height:26px;min-height:26px;max-height:26px;justify-items:center;align-items:center;gap:0;padding:0 calc(14px + env(safe-area-inset-right)) 0 calc(14px + env(safe-area-inset-left));margin:0;border:0;border-top:1px solid #334;background:linear-gradient(90deg,#12161e,#3a4458 42%,#12161e);line-height:1;box-sizing:border-box;position:relative;z-index:2}
 .util-row .tiny-mute,.util-row #pauseBtn{flex:none;margin:0;padding:4px 10px;border-radius:8px;height:24px;box-sizing:border-box}
 #muteMusic,#pauseBtn,#muteFx{position:relative;grid-column:auto;grid-row:auto;margin:0}
 .overlay{position:absolute;inset:0;display:none;flex-direction:column;align-items:center;justify-content:center;padding:0 16px;z-index:20;background:transparent;pointer-events:none;text-align:center}
