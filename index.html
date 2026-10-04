@@ -526,7 +526,7 @@ const skillLabel=matchSkill?matchSkill.querySelector("label"):null;
 if(mode==="arcade"){
   if(matchSkill)matchSkill.style.display="none";
 }else{
-  if(matchSkill)matchSkill.style.display="";
+  if(matchSkill)matchSkill.style.display=readyToFight?"none":"";
   const showCpu=mode==="pvc"&&!readyToFight;
   if(skillRow)skillRow.style.display=showCpu?"":"none";
   if(skillLabel)skillLabel.style.display=showCpu?"":"none";
