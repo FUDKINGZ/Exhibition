@@ -167,7 +167,7 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 .round-pips i{width:7px;height:7px;border-radius:50%;border:1px solid #ffd54f;display:block}.round-pips i.won{background:#ffd54f}
 .clock-wrap{display:flex;align-items:center;justify-content:center;padding:0 4px 10px;min-width:52px}
 #roundClock{font-size:15px;font-weight:900;color:#ffe082}#roundClock.low{color:#ff1744}#roundClock.sd{color:#ea80fc;font-size:9px}
-#fight{min-height:0;height:100%;overflow:hidden;display:flex;flex-direction:column}
+#fight{min-height:0;height:100%;overflow:hidden;flex-direction:column}
 #stage{flex:1 1 0;min-height:0;position:relative;overflow:hidden;background:#12080c;background-size:cover;background-repeat:no-repeat;background-position:center center;width:100%;max-height:none;contain:layout paint style}
 #fight.quake #stage{animation:quake 2.4s linear}
 #fight.quake #you,#fight.quake #cpu{animation:fighterQuake 2.2s linear}
@@ -422,7 +422,7 @@ let currentRound=1,matchScore=0,matchXp=0,lastScoreId="",roundWins={you:0,cpu:0}
 let readyTimer=null,announceIdx=0,winFlashTimer=null,quakeTimer=null,audioCtx=null;
 let roundTimeLeft=ROUND_SECS,roundTimer=null,suddenDeath=false;
 let rosterData={activeId:"",players:[]},rosterFileHandle=null;
-let introTimer=null,introDone=false,introLocked="",introWanted=true,introStarted=false;
+let introTimer=null,introDone=false,introLocked="",introWanted=true,introStarted=false,introCanSkip=false;
 let youPos=YOU_HOME,cpuPos=CPU_HOME,tiltOn=false,tiltCenter=0,tiltReady=false,keysDown={},moveHold={left:false,right:false};
 let walkTimer=null,readyToFight=false;
 const bgm=document.getElementById("bgm"),introSfx=document.getElementById("introSfx");
@@ -630,16 +630,18 @@ function startTitleSong(){if(!introDone)return;stopIntroBed();const playing=/mai
 function finishIntro(){if(introDone)return;introDone=true;introWanted=false;if(introTimer){clearTimeout(introTimer);introTimer=null;}stopIntroBed();lastScreen="title";document.querySelectorAll(".screen").forEach(function(s){s.classList.remove("active");});document.getElementById("title").classList.add("active");startTitleSong();}
 function typeIntroLine(prefix,text,onChar,done){let i=0;function tick(){if(introDone)return;if(i>=text.length){if(done)done();return;}const ch=text.charAt(i);setIntroText(prefix+text.slice(0,i+1));if(onChar)onChar(ch);i+=1;introTimer=setTimeout(tick,ch===" "?90:70);}tick();}
 function startIntroPages(){introLocked="";setIntroText("");let page=0;function nextPage(){if(introDone)return;if(page>=INTRO_PAGES.length){setIntroText(introLocked);introTimer=setTimeout(finishIntro,1400);return;}const line=INTRO_PAGES[page],prefix=introLocked;typeIntroLine(prefix,line,null,function(){introLocked=prefix+line;page+=1;if(page<INTRO_PAGES.length)introLocked+="\n\n";introTimer=setTimeout(nextPage,420);});}nextPage();}
-function runIntroSequence(){introDone=false;introWanted=true;introLocked="";if(introTimer){clearTimeout(introTimer);introTimer=null;}setIntroText("");typeIntroLine("","LOADING",null,function(){setIntroText("LOADING");introTimer=setTimeout(function(){if(introDone)return;setIntroText("");startIntroPages();},LOAD_HOLD_MS);});}
-function runIntro(){introDone=false;introWanted=true;introStarted=false;introLocked="";if(introTimer){clearTimeout(introTimer);introTimer=null;}setIntroText("");const panel=document.getElementById("coinPanel");const t=document.getElementById("introText");if(panel)panel.classList.remove("hidden");if(t)t.classList.remove("show");const slot=document.getElementById("coinSlot");if(slot)slot.classList.remove("fed");}
+function runIntroSequence(){introDone=false;introWanted=true;introCanSkip=false;introLocked="";if(introTimer){clearTimeout(introTimer);introTimer=null;}setIntroText("");typeIntroLine("","LOADING",null,function(){setIntroText("LOADING");introTimer=setTimeout(function(){if(introDone)return;introCanSkip=true;setIntroText("");startIntroPages();},LOAD_HOLD_MS);});}
+function runIntro(){introDone=false;introWanted=true;introStarted=false;introCanSkip=false;introLocked="";if(introTimer){clearTimeout(introTimer);introTimer=null;}setIntroText("");const panel=document.getElementById("coinPanel");const t=document.getElementById("introText");if(panel)panel.classList.remove("hidden");if(t)t.classList.remove("show");const slot=document.getElementById("coinSlot");if(slot)slot.classList.remove("fed");}
 function onIntroInput(){
   if(introDone)return;
   if(!introStarted){enterArena();return;}
+  if(!introCanSkip)return;
   finishIntro();
 }
 function enterArena(){
   if(introStarted||introDone)return;
   introStarted=true;
+  introCanSkip=false;
   const panel=document.getElementById("coinPanel");
   const slot=document.getElementById("coinSlot");
   if(slot)slot.classList.add("fed");
@@ -955,8 +957,9 @@ document.addEventListener("selectstart",function(e){
 document.addEventListener("selectionchange",function(){
   if(lastScreen==="fight")clearSel();
 });
-document.getElementById("enterArenaBtn").addEventListener("click",function(e){e.stopPropagation();enterArena();});
-document.getElementById("introCrt").addEventListener("pointerdown",function(e){if(!introStarted)return;onIntroInput();});
+document.getElementById("enterArenaBtn").addEventListener("pointerdown",function(e){e.preventDefault();e.stopPropagation();enterArena();});
+document.getElementById("enterArenaBtn").addEventListener("click",function(e){e.preventDefault();e.stopPropagation();});
+document.getElementById("introCrt").addEventListener("pointerdown",function(e){if(!introStarted||!introCanSkip)return;if(e.target&&e.target.closest&&e.target.closest("#enterArenaBtn,#coinPanel"))return;onIntroInput();});
 window.addEventListener("keydown",function(e){if(!introDone&&document.getElementById("intro").classList.contains("active")){e.preventDefault();onIntroInput();return;}if(e.target&&(e.target.tagName==="INPUT"||e.target.tagName==="TEXTAREA"))return;keysDown[e.code]=true;if(e.code==="ArrowLeft"||e.code==="ArrowRight"||e.code==="KeyA"||e.code==="KeyD")startWalkLoop();});
 window.addEventListener("keyup",function(e){keysDown[e.code]=false;if(!isMoving())stopWalkLoop();});
 rosterData=loadRosterLocal();
