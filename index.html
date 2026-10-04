@@ -363,9 +363,9 @@ input[type=file].hidden-file{display:none}
        <button type="button" class="move-btn" id="moveR" aria-label="Right"></button>
      </div>
      <div class="util-row">
-       <button type="button" class="tiny-mute" id="muteMusic">MUSIC</button>
-       <button type="button" id="pauseBtn">PAUSE</button>
-       <button type="button" class="tiny-mute" id="muteFx">S F/X</button>
+       <button type="button" class="tiny-mute" id="muteMusic" onclick="toggleMuteMusic()">MUSIC</button>
+       <button type="button" id="pauseBtn" onclick="togglePause()">PAUSE</button>
+       <button type="button" class="tiny-mute" id="muteFx" onclick="toggleMuteFx()">S F/X</button>
      </div>
    </div>
   </section>
@@ -952,12 +952,12 @@ function bindUtil(id,fn){
   const el=document.getElementById(id);
   if(!el)return;
   el.style.touchAction="manipulation";
-  el.addEventListener("click",function(e){e.stopPropagation();fn();});
+  el.addEventListener("touchstart",function(e){e.stopPropagation();},{passive:true});el.addEventListener("pointerdown",function(e){e.stopPropagation();});el.addEventListener("click",function(e){e.stopPropagation();fn();});
 }
 bindUtil("muteMusic",toggleMuteMusic);
 bindUtil("muteFx",toggleMuteFx);
 bindUtil("pauseBtn",togglePause);
-antiSelect(document.getElementById("controls"));
+/* controls lock removed so MUSIC PAUSE SFX can click */
 antiSelect(document.querySelector("#controls .pad-wrap"));
 document.addEventListener("selectstart",function(e){
   if(lastScreen==="fight"){e.preventDefault();clearSel();return false;}
