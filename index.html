@@ -10,10 +10,12 @@ button,.btn,.atk,.move-btn,.tiny-mute,#pauseBtn,.nav-row button,.skill-row butto
 html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;font-family:"Segoe UI",system-ui,sans-serif;background:#000;color:#e8f0ff;touch-action:manipulation;display:flex;align-items:center;justify-content:center}
 #app {
   position: relative;
-  width: 1080px;
-  height: 100%;
-  max-width: 100%;
+  width: 100%;
+  max-width: 430px;
+  height: 100dvh;
   max-height: 100dvh;
+  margin: 0 auto;
+  flex: none;
   overflow: hidden;
   background: #05070d;
   display: flex;
@@ -23,12 +25,12 @@ html,body{margin:0;width:100%;height:100%;height:100dvh;overflow:hidden;font-fam
 .screen{position:absolute;inset:0;display:none;flex-direction:column;contain:layout paint}.screen.active{display:flex}#postfight{overflow:visible;contain:none}
 .menu{background:radial-gradient(ellipse at top,rgba(80,20,0,.35),transparent 55%),#071018}#roster,#scores,#stockcred,#invite,#fighters,#opponents,#matchup,#postfight,#liquid,#arenas,#crown,#credits,#guide,#soundtrack,#gate{background-color:transparent;background-image:linear-gradient(180deg,rgba(5,8,14,.55),rgba(5,8,14,.72)),url(./scenebg.png);background-size:cover;background-position:center center;background-repeat:no-repeat}.fine-print{position:absolute;left:0;right:0;bottom:0;z-index:30;display:grid;grid-template-columns:1fr auto 1fr;align-items:center;gap:8px;padding:4px 10px calc(4px + env(safe-area-inset-bottom));border-top:0;background:rgba(0,0,0,.72);font-family:"Courier New",Courier,monospace;font-size:9px;letter-spacing:.4px;color:#39ff14;text-shadow:0 0 6px rgba(57,255,20,.45)}.fine-print a{color:#39ff14;text-decoration:underline;text-shadow:0 0 6px rgba(57,255,20,.45)}.fine-print .mid{text-align:center;text-decoration:none}.fine-print .end{text-align:right}#app:has(#intro.active) .fine-print,#app:has(#fight.active) .fine-print{display:none}
 .brand{text-align:center;padding:calc(6px + env(safe-area-inset-top)) 0 0;flex:none}
-.brand .brand-logo{display:block;width:100%;max-width:1080px;height:auto;margin:0;object-fit:contain;object-position:center}
+.brand .brand-logo{display:block;width:100%;max-width:100%;height:auto;margin:0;object-fit:contain;object-position:center}
 .brand h1{display:none}
 .brand p{margin:4px 0 0;font-family:Impact,"Arial Black",system-ui,sans-serif;font-size:clamp(16px,4.6vw,26px);font-weight:900;color:#ffd54f;letter-spacing:2px;text-transform:uppercase;text-shadow:0 0 16px #ffb300,0 3px 0 #000}
 .menu-art{flex:1;display:flex;min-height:0;padding:0;align-items:flex-start;justify-content:center;overflow:hidden}
-.menu-art img.roster{flex:none;width:1080px;max-width:1080px;height:720px;min-height:720px;object-fit:contain;object-position:center top;filter:none}
-.menu-btns{padding:6px 12px calc(30px + env(safe-area-inset-bottom));display:flex;gap:8px;align-items:center;justify-content:space-between}
+.menu-art img.roster{flex:none;width:100%;max-width:100%;height:auto;max-height:46dvh;min-height:0;object-fit:contain;object-position:center top;filter:none}
+.menu-btns{padding:6px 0 calc(30px + env(safe-area-inset-bottom));display:flex;gap:8px;align-items:center;justify-content:space-between}
 .menu-btns .btn{width:auto;flex:0 1 auto;margin:0;padding:8px 12px;font-size:12px;border-radius:10px}
 .menu-btns.tight{display:grid;grid-template-columns:1fr 1fr;gap:6px}
 .menu-btns.tight .btn{margin:0;padding:8px 6px;font-size:12px;border-radius:10px;line-height:1.15}
@@ -168,20 +170,22 @@ button,.btn,.atk,.nav-row button,.skill-row button,.round-pick button,.invite-ro
 .round-pips i{width:7px;height:7px;border-radius:50%;border:1px solid #ffd54f;display:block}.round-pips i.won{background:#ffd54f}
 .clock-wrap{display:flex;align-items:center;justify-content:center;padding:0 4px 10px;min-width:52px}
 #roundClock{font-size:15px;font-weight:900;color:#ffe082}#roundClock.low{color:#ff1744}#roundClock.sd{color:#ea80fc;font-size:9px}
-#fight{position:absolute;top:0;left:0;right:0;bottom:0;min-height:0;height:100%;overflow:hidden;flex-direction:column;justify-content:flex-start;align-items:stretch;padding-top:env(safe-area-inset-top)}
-#stage{flex:1 1 0;min-height:0;position:relative;overflow:hidden;background:#12080c;background-size:cover;background-repeat:no-repeat;background-position:center center;width:100%;max-height:none;contain:layout paint style}
+#fight{position:absolute;top:0;left:0;right:0;bottom:0;min-height:0;height:100%;overflow:hidden;flex-direction:column;justify-content:flex-start;align-items:stretch;padding-top:env(safe-area-inset-top);background:#05070d;container-type:inline-size}
+#stage{flex:0 0 auto;min-height:0;position:relative;overflow:hidden;background:#12080c;background-size:contain;background-repeat:no-repeat;background-position:center bottom;width:100%;height:auto;max-height:none;margin:0}
+.arena-img{display:block;width:100%;height:auto;pointer-events:none}
+#fightGap{flex:1 1 #fightGap{flex:none;width:100%;height:80px;min-height:80px;max-height:80px;background:#05070d;overflow:hidden}#fightBanner{display:block;width:100%;height:80px;object-fit:fill;pointer-events:none}auto;width:100%;min-height:0;background:#05070d;overflow:hidden}#fightBanner{display:block;width:100%;height:100%;object-fit:contain;object-position:center bottom;pointer-events:none}
 #fight.quake #stage{animation:quake 2.4s linear}
 #fight.quake #you,#fight.quake #cpu{animation:fighterQuake 2.2s linear}
 @keyframes quake{0%,100%{transform:translate(0,0)}8%{transform:translate(-10px,6px)}16%{transform:translate(12px,-8px)}24%{transform:translate(-8px,-5px)}32%{transform:translate(9px,7px)}40%{transform:translate(-12px,3px)}48%{transform:translate(7px,-9px)}56%{transform:translate(-6px,8px)}64%{transform:translate(11px,-4px)}72%{transform:translate(-9px,5px)}80%{transform:translate(6px,-6px)}88%{transform:translate(-4px,3px)}}
 @keyframes fighterQuake{0%,100%{transform:translate(0,0) rotate(0)}12%{transform:translate(-6px,4px) rotate(-2deg)}28%{transform:translate(8px,-5px) rotate(2deg)}44%{transform:translate(-7px,3px) rotate(-1deg)}60%{transform:translate(5px,-4px) rotate(2deg)}76%{transform:translate(-4px,2px) rotate(-1deg)}}
-.fighter{position:absolute;bottom:36px;width:46%;max-width:260px;aspect-ratio:3/4;max-height:calc(100% - 112px);transform-origin:center bottom}
-#you{left:2%}#cpu{right:2%}
+.fighter{position:absolute;bottom:11%;width:38%;max-width:none;aspect-ratio:3/4;max-height:none;transform-origin:center bottom}
+#you{left:4%}#cpu{right:4%}
 .fighter-img{width:100%;height:100%;object-fit:contain;object-position:center bottom;display:none;background:transparent!important;transform:none}
 #cpu .fighter-img{transform:scaleX(-1)}.fighter.hit{filter:brightness(2.2) saturate(0)}
-#you.punchL{transform:translateX(52px) rotate(-5deg)}#you.punchR{transform:translateX(68px) rotate(3deg)}
-#you.kickL{transform:translateX(48px) rotate(7deg)}#you.kickR{transform:translateX(62px) translateY(-16px) rotate(-8deg)}#you.throw{transform:translateX(36px) rotate(-8deg)}
-#cpu.punchL{transform:translateX(-52px) rotate(5deg)}#cpu.punchR{transform:translateX(-68px) rotate(-3deg)}
-#cpu.kickL{transform:translateX(-48px) rotate(-7deg)}#cpu.kickR{transform:translateX(-62px) translateY(-16px) rotate(8deg)}#cpu.throw{transform:translateX(-36px) rotate(8deg)}
+#you.punchL{transform:translateX(12%) rotate(-5deg)}#you.punchR{transform:translateX(16%) rotate(3deg)}
+#you.kickL{transform:translateX(11%) rotate(7deg)}#you.kickR{transform:translateX(14%) translateY(-4%) rotate(-8deg)}#you.throw{transform:translateX(8%) rotate(-8deg)}
+#cpu.punchL{transform:translateX(-12%) rotate(5deg)}#cpu.punchR{transform:translateX(-16%) rotate(-3deg)}
+#cpu.kickL{transform:translateX(-11%) rotate(-7deg)}#cpu.kickR{transform:translateX(-14%) translateY(-4%) rotate(8deg)}#cpu.throw{transform:translateX(-8%) rotate(8deg)}
 .toss,.cash{position:absolute;object-fit:contain;object-position:center;pointer-events:none;z-index:8;filter:drop-shadow(0 8px 12px #000);image-rendering:auto}
 .toss{width:min(14vw,55px);height:min(14vw,55px);max-width:55px;max-height:55px}.cash{width:42px;height:36px;max-width:42px;max-height:36px;z-index:12;display:block}
 .fx{position:absolute;font-weight:900;color:#ff5252;text-shadow:0 0 8px #000;pointer-events:none;animation:float 700ms ease-out forwards;z-index:10}
@@ -274,7 +278,7 @@ input[type=file].hidden-file{display:none}
 .coin-slot::before{content:"";position:absolute;left:50%;top:16px;transform:translateX(-50%);width:16px;height:92px;border-radius:6px;background:#050608;box-shadow:inset 0 0 6px #000,0 0 0 1px #222}
 .token{width:88px;height:88px;border-radius:50%;display:block;padding:0;color:#5a3200;background:radial-gradient(circle at 30% 28%,#fff3bf,#ffd54f 42%,#ffb300 68%,#c68400);border:2px solid #8a5a00;box-shadow:0 0 14px rgba(255,179,0,.55),inset 0 0 0 3px rgba(139,90,0,.35);cursor:pointer;animation:tokenPulse 1.35s ease-in-out infinite}.token svg{width:100%;height:100%;display:block;pointer-events:none}@keyframes tokenPulse{0%,100%{transform:scale(1);box-shadow:0 0 14px rgba(255,179,0,.55),inset 0 0 0 3px rgba(139,90,0,.35)}50%{transform:scale(1.07);box-shadow:0 0 24px rgba(255,213,79,.9),inset 0 0 0 3px rgba(139,90,0,.35)}}
 @keyframes tokSpin{0%,22%{transform:rotateY(0deg)}38%{transform:rotateY(-18deg)}50%,72%{transform:rotateY(0deg)}88%{transform:rotateY(18deg)}100%{transform:rotateY(0deg)}}
-.menu-btns.tok-row{justify-content:space-between;align-items:center;perspective:600px;padding-left:10px;padding-right:10px}#postBtns{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:92px;overflow:visible;padding:6px 8px calc(42px + env(safe-area-inset-bottom))}#postBtns .tok-btn{margin-left:0;margin-right:0}#postPlayAgain{order:1;margin-right:auto}#postExitTitle{order:2}#postPickFighter{order:3;margin-left:auto}
+.menu-btns.tok-row{justify-content:space-between;align-items:center;perspective:600px;padding-left:0;padding-right:0}#postBtns{display:flex;justify-content:space-between;align-items:center;width:100%;min-height:92px;overflow:visible;padding:6px 8px calc(42px + env(safe-area-inset-bottom))}#postBtns .tok-btn{margin-left:0;margin-right:0}#postPlayAgain{order:1;margin-right:auto}#postExitTitle{order:2}#postPickFighter{order:3;margin-left:auto}
 .tok-btn{width:78px;height:78px;border-radius:50%;padding:0;margin:0;cursor:pointer;animation:tokSpin 6.4s ease-in-out infinite;transform-origin:center center;transform-style:preserve-3d;flex:none}
 .tok-btn text,.tok-btn textPath{font-family:Impact,"Arial Black",system-ui,sans-serif;font-weight:900}
 .tok-btn text{font-size:22px;letter-spacing:3.2px}
@@ -387,6 +391,7 @@ input[type=file].hidden-file{display:none}
 <section id="soundtrack" class="screen menu"><div class="brand"><img class="brand-logo" src="./title header.png" alt="FINTWITS FUD KINGZ"><h1>FINTWITS FUD KINGZ</h1><p>PIT DECK</p></div><div class="pit"><div class="pit-lcd"><b id="pitNow">PIT DECK</b><span id="pitSub">SELECT A TRACK</span></div><div class="pit-list" id="pitList"></div><div class="pit-controls"><button type="button" onclick="pitStep(-1)">PREV</button><button type="button" id="pitPlay" onclick="pitToggle()">PLAY</button><button type="button" onclick="pitStep(1)">NEXT</button></div></div><div class="menu-btns tok-row"><button type="button" class="tok-btn silver" onclick="show('title')" aria-label="Back"><svg viewBox="0 0 100 100"><text x="50" y="58" text-anchor="middle" fill="#2a3140" font-size="22" font-weight="900" letter-spacing="3.2">BACK</text></svg></button></div></section>
 <section id="fight" class="screen">
   <div id="stage">
+    <img id="arenaImg" class="arena-img" alt="">
     <div class="hud"><div class="meter p1"><label><span class="char-name" id="p1Name">YOU</span></label><div class="bar"><span id="p1Bar"></span><em class="bar-cash" id="p1Dollar">$100</em></div><div class="pip-row"><div class="round-pips" id="p1Pips"></div><span class="char-handle" id="p1Profile"></span></div></div><div class="clock-wrap"><span id="roundClock">2:00</span></div><div class="meter p2"><label><span class="char-name" id="p2Name">CPU</span></label><div class="bar"><span id="p2Bar"></span><em class="bar-cash" id="p2Dollar">$100</em></div><div class="pip-row"><span class="char-handle" id="p2Profile"></span><div class="round-pips" id="p2Pips"></div></div></div></div>
     <div class="fighter" id="you"><img class="fighter-img" id="youFile" alt=""></div>
     <div class="fighter" id="cpu"><img class="fighter-img" id="cpuFile" alt=""></div>
@@ -414,6 +419,7 @@ input[type=file].hidden-file{display:none}
        <button type="button" class="tiny-mute" id="muteFx" onclick="toggleMuteFx()">S F/X</button>
      </div>
    </div>
+   <div id="fightGap"><img id="fightBanner" src="./fight_banner.png" alt=""></div>
   </section>
 <div class="fine-print"><span>BUILD: PR-LVS-FR~10.5</span><span class="mid"><a href="https://x.com/WFUD_Radio" target="_blank" rel="noopener">WFUD STUDIOS</a> | <a href="https://x.com/DarkFud420" target="_blank" rel="noopener">Dark Fud 420</a></span><span class="end">2026</span></div>
 </div>
@@ -421,11 +427,11 @@ input[type=file].hidden-file{display:none}
 const ROOT="./",ARENA_DIR=ROOT+"arenas/",FIGHTER_DIR=ROOT+"fighters/",TITLECARD_DIR=ROOT+"titlecards/",OBJECT_DIR=ROOT+"objects/",AUDIO=ROOT+"audio/";
 const TITLE_TRACK=AUDIO+"title/maintitle.mp3",INTRO_BED=AUDIO+"intro/intro-boot.wav";
 const ROSTER=ROOT+"title screen.png",ROSTER_FILE=ROOT+"roster.json";
-const MAX=100,PUNCH_DMG=0.5,KICK_DMG=1,THROW_DMG=2.5,BLOCK_HEAL=0.5,HIT_GAP=86;
+const MAX=100,PUNCH_DMG=0.5,KICK_DMG=1,THROW_DMG=2.5,BLOCK_HEAL=0.5,HIT_GAP=42;
 const HS_STORE="ft_gains",SKILL_STORE="ft_skill",ARCADE_SKILL_STORE="ft_arcade_skill",ROSTER_STORE="ft_roster",ROUNDS_STORE="ft_rounds";
 const POSE_MS=420,HS_LIMIT=10,ANNOUNCE_MS=800,WIN_FLASH_MS=4200,ROUND_WIN_HOLD_MS=4000,FINAL_KO_HOLD_MS=4000;
 const THROW_MS=640,POWER_MAX=100,POWER_PUNCH=22,POWER_KICK=28,COMBO_WINDOW=900,COMBO_BONUS=12,THROWS_PER_POWER=3;
-const ROUND_SECS=120,YOU_HOME=2,YOU_MIN=0,YOU_MAX=36,CPU_HOME=2,CPU_MIN=0,CPU_MAX=36,TILT_DEAD=7,TILT_SCALE=28,ARCADE_ROUNDS=2,CASH_W=29,CASH_H=26,TOSS_SIZE=55;
+const ROUND_SECS=120,YOU_HOME=4,YOU_MIN=0,YOU_MAX=28,CPU_HOME=4,CPU_MIN=0,CPU_MAX=28,TILT_DEAD=7,TILT_SCALE=28,ARCADE_ROUNDS=2,CASH_W=29,CASH_H=26,TOSS_SIZE=55;
 const ROUND_CALLS=["3","2","1","READY","FIGHT!"],TITLE_MENUS={fighters:1,opponents:1,invite:1,scores:1,roster:1,crown:1,credits:1,guide:1,stockcred:1,soundtrack:1,gate:1};
 const KEEP_ARENA_MUSIC={postfight:1,liquid:1,fight:1};
 const POSE_LABEL={punchL:"left punch",punchR:"right punch",kickL:"left kick",kickR:"right kick",throw:"throw",block:"block",victory:"victory",loser:"loser"};
@@ -851,7 +857,7 @@ bindSwipe(document.getElementById("arenaCarousel"),function(){shiftArena(1);},fu
 function preloadFighter(f){if(!f||f._preloaded)return;["select","idle","punchL","punchR","kickL","kickR","throw","block","victory","loser","objects"].forEach(function(p){const u=(f[p]||[])[0];if(u)preloadUrl(u);});f._preloaded=true;}
 function preloadMatchPair(){const a=FIGHTERS[selectedFighter],b=FIGHTERS[(cpuFighter!=null?cpuFighter:selectedOpponent)];preloadFighter(a);preloadFighter(b);}
 function applyFighterArt(){const mine=FIGHTERS[selectedFighter],theirs=FIGHTERS[cpuFighter],me=activePlayer();preloadMatchPair();const youImg=document.getElementById("youFile"),cpuImg=document.getElementById("cpuFile");youImg.dataset.pose="";cpuImg.dataset.pose="";youImg.style.display="none";cpuImg.style.display="none";function rosterTag(p){if(!p)return"@PLAYER";return normHandle(p.handle||p.name||"")||"@PLAYER";}const p2Tag=(mode==="one"&&invitedMember)?rosterTag(invitedMember):"AI";document.getElementById("p1Name").textContent=mine.name;document.getElementById("p2Name").textContent=theirs.name;document.getElementById("p1Profile").textContent=rosterTag(me);document.getElementById("p2Profile").textContent=p2Tag;playPose("you","idle");playPose("cpu","idle");}
-function applyArena(){const a=ARENAS[selectedArena],stage=document.getElementById("stage");preloadUrl(a.file);stage.style.backgroundColor=a.color;stage.style.backgroundImage="url('"+a.file+"')";stage.style.backgroundPosition=a.pos;playArenaMusic(false);}
+function applyArena(){const a=ARENAS[selectedArena],stage=document.getElementById("stage"),img=document.getElementById("arenaImg");preloadUrl(a.file);stage.style.backgroundColor=a.color;stage.style.backgroundImage="none";if(img)img.src=a.file;playArenaMusic(false);}
 function pickRandomCpu(){const pool=[];const limit=mode==="pvc"?FIGHTERS.length:MAIN_COUNT;for(let i=0;i<limit;i++)if(i!==selectedFighter&&!fighterLocked(i))pool.push(i);if(!pool.length)return wrap((selectedFighter+1)%FIGHTERS.length,FIGHTERS.length);return pool[Math.floor(Math.random()*pool.length)];}
 function buildArcadeQueue(){
   arcadeQueue=[];arcadeBeaten={};lastLiquidIdx=-1;lastBeatenName="";
